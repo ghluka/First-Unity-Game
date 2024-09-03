@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,21 +14,24 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+    public LayerMask killMask;
 
     Vector3 velocity;
 
     bool isGrounded;
+    bool isDead;
 
     // Update is called once per frame
     void Update()
     {
-        //checking if we hit the ground to reset our falling velocity, otherwise we will fall faster the next time
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        isDead = Physics.CheckSphere(groundCheck.position, groundDistance, killMask);
+
+        if (isDead)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         if (isGrounded && velocity.y < 0)
-        {
-            velocity.y = -6f;
-        }
+            velocity.y = -4f;
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
@@ -38,12 +42,8 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
 
-        //check if the player is on the ground so he can jump
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            //the equation for jumping
+        if (Input.GetButton("Jump") && isGrounded)
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
 
         velocity.y += gravity * Time.deltaTime;
 
