@@ -16,7 +16,7 @@ jobs:
               UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
           with:
               projectPath: src
-              githubToken: ${{ secrets.GH_TOKEN }}
+              githubToken: ${{ secrets.GITHUB_TOKEN }}
               unityVersion: 2022.3.15f1
               
         - name: Build WebGL Artifact
@@ -49,5 +49,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: src/Build
