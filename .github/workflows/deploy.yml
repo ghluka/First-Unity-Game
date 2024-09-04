@@ -25,6 +25,7 @@ jobs:
             targetPlatform: WebGL
             allowDirtyBuild: true
             projectPath: src
+            unityVersion: 2022.3.15f1
             
         - uses: actions/upload-artifact@v2
           with:
