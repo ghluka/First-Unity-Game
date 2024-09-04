@@ -15,3 +15,4 @@ jobs:
         with:
             projectPath: src
             githubToken: ${{ secrets.GITHUB_TOKEN }}
+            unityVersion: 2022.3.15f1
