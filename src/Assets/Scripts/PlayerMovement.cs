@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 velocity;
 
+    float ogSpeed = 0f;
+
     bool isGrounded;
     bool isDead;
 
@@ -32,6 +34,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded && velocity.y < 0)
             velocity.y = -4f;
+
+        if (isGrounded && Input.GetKey(KeyCode.LeftShift))
+            speed = ogSpeed + 5f;
+        else if (isGrounded)
+            speed = ogSpeed;
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
@@ -48,5 +55,10 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    void Start()
+    {
+        ogSpeed = speed;
     }
 }

@@ -5,6 +5,5 @@ My first game made in Unity. A simple parkour game based off that one famous vox
 [![GitHub license](https://img.shields.io/github/license/ghluka/First-Unity-Game)](LICENSE)
 
 ## 📝 TODO
-- [ ] add shift to sprint
 - [ ] finish level 2
 - [ ] add more levels
