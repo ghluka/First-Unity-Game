@@ -40,7 +40,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: Build
-          path: build
+          path: build/WebGL/WebGL
 
       - uses: peaceiris/actions-gh-pages@v3
         with:
