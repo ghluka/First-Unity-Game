@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask killMask;
 
     Vector3 velocity;
+    Vector3 forward;
 
     float ogSpeed = 0f;
 
@@ -43,8 +45,11 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        //right is the red Axis, foward is the blue axis
-        Vector3 move = transform.right * x + transform.forward * z;
+        forward = transform.forward;
+        forward.y = 0;
+        forward.Normalize();
+
+        Vector3 move = transform.right * x + forward * z;
         move.y = 0;
 
         controller.Move(move * speed * Time.deltaTime);
