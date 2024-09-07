@@ -15,7 +15,7 @@ public class LevelComplete : MonoBehaviour
             if (completed < current)
                 PlayerPrefs.SetInt("levelsDone", current);
             Cursor.lockState = CursorLockMode.None;
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("LevelSelect");
         }
     }
 }
