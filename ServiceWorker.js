@@ -1,4 +1,4 @@
-const cacheName = "DefaultCompany-Mine Parkour-0.0.29";
+const cacheName = "DefaultCompany-Mine Parkour-0.0.30";
 const contentToCache = [
     "Build/WebGL.loader.js",
     "Build/WebGL.framework.js",
