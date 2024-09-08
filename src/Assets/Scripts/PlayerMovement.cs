@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     float ogSpeed = 0f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
+    bool sprinting = false;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -25,12 +26,13 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
     Vector3 forward;
 
+
     void Update()
     {
         bool isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         bool isJumpable = Physics.CheckSphere(groundCheck.position, groundDistance, jumpMask);
         bool isDead = Physics.CheckSphere(groundCheck.position, groundDistance, killMask);
-        bool isBouncy = Physics.CheckSphere(groundCheck.position, groundDistance + .3f, bouncyMask);
+        bool isBouncy = Physics.CheckSphere(groundCheck.position, groundDistance + .5f, bouncyMask);
         bool isSlow = Physics.CheckSphere(groundCheck.position, groundDistance, slowMask);
 
         if (isDead)
@@ -45,11 +47,17 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (isGrounded && Input.GetKey(KeyCode.LeftShift))
+        {
             speed = ogSpeed + 5f;
+            sprinting = true;
+        }
         else if (isGrounded)
-            speed = ogSpeed;
+            sprinting = false;
+
         if (isSlow)
             speed = ogSpeed - 5f;
+        else if (!sprinting)
+            speed = ogSpeed;
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");

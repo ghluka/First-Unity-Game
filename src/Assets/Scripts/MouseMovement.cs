@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MouseMovement : MonoBehaviour
 {
-    public float mouseSensitivity = 100f;
-
     float xRotation = 20f;
     float YRotation = 0f;
 
@@ -16,8 +14,14 @@ public class MouseMovement : MonoBehaviour
 
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float mouseSensitivity = PlayerPrefs.GetFloat("mouseSensitivity");
+        if (mouseSensitivity == 0) {
+            PlayerPrefs.SetFloat("mouseSensitivity", .5f);
+            mouseSensitivity = .5f;
+        }
+
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * 100f * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * 100f * Time.deltaTime;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -89.99f, 89.99f);

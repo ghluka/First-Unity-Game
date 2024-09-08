@@ -9,6 +9,7 @@ public class LevelSelect : MonoBehaviour
 {
     void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
         Button button = gameObject.GetComponent<Button>();
         int current = Int16.Parse(button.name.Split("Level")[1]);
         int completed = PlayerPrefs.GetInt("levelsDone") + 1;
