@@ -11,6 +11,7 @@ public class ReturnToMenu : MonoBehaviour
         Button button = gameObject.GetComponent<Button>();
         button.onClick.AddListener(delegate {
             SceneManager.LoadScene("Start");
+            Cursor.lockState = CursorLockMode.None;
         });
     }
 }

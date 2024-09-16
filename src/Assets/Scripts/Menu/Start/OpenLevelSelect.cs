@@ -12,6 +12,7 @@ public class OpenLevelSelect : MonoBehaviour
         Button button = gameObject.GetComponent<Button>();
         button.onClick.AddListener(delegate {
             SceneManager.LoadScene("LevelSelect");
+            Cursor.lockState = CursorLockMode.None;
         });
     }
 }
