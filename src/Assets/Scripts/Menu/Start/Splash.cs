@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Splash : MonoBehaviour
@@ -23,6 +24,7 @@ public class Splash : MonoBehaviour
             "Written in C#!",
             "Licensed under Apache 2.0!",
             "Redistribute!",
+            SceneManager.sceneCountInBuildSettings - 2 + " levels!",
         };
 
         Text text = gameObject.GetComponent<Text>();

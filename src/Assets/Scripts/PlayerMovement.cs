@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     LayerMask killMask;
     LayerMask bouncyMask;
     LayerMask slowMask;
+    LayerMask iceMask;
 
     Vector3 velocity;
     Vector3 forward;
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         bool isDead = Physics.CheckSphere(groundCheck.position, groundDistance, killMask);
         bool isBouncy = Physics.CheckSphere(groundCheck.position, groundDistance + .5f, bouncyMask);
         bool isSlow = Physics.CheckSphere(groundCheck.position, groundDistance, slowMask);
+        bool isIce = Physics.CheckSphere(groundCheck.position, groundDistance + .2f, iceMask);
 
         if (isDead)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -76,17 +78,35 @@ public class PlayerMovement : MonoBehaviour
         else if (isGrounded && velocity.y < 0)
             velocity.y = 0;
 
+        velocity.x *= .99f;
+        velocity.z *= .99f;
+        if (isIce)
+        {
+            velocity += move * speed * 5f * Time.deltaTime;
+        }
+        else
+        {
+            velocity.x *= .9f;
+            velocity.z *= .9f;
+        }
+
+        if (velocity.x > -.1f && velocity.x < .1f)
+            velocity.x = 0f;
+        if (velocity.z > -.1f && velocity.z < .1f)
+            velocity.z = 0f;
+
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
 
     void Start()
     {
-        groundMask = LayerMask.GetMask(new string[] { "Default", "WaterBounce" });
-        jumpMask = LayerMask.GetMask(new string[] { "Default" });
+        groundMask = LayerMask.GetMask(new string[] { "Default", "WaterBounce", "Ice" });
+        jumpMask = LayerMask.GetMask(new string[] { "Default", "Ice" });
         killMask = LayerMask.GetMask(new string[] { "Water" });
         bouncyMask = LayerMask.GetMask(new string[] { "Bouncy" });
         slowMask = LayerMask.GetMask(new string[] { "WaterBounce" });
+        iceMask = LayerMask.GetMask(new string[] { "Ice" });
 
         ogSpeed = speed;
     }
