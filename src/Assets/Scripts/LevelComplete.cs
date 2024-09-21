@@ -11,9 +11,9 @@ public class LevelComplete : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             int current = Int16.Parse(SceneManager.GetActiveScene().name.Split("Level")[1]);
-            int completed = PlayerPrefs.GetInt("levelsDone");
+            int completed = PlayerPrefs.GetInt("levelsCompleted");
             if (completed < current)
-                PlayerPrefs.SetInt("levelsDone", current);
+                PlayerPrefs.SetInt("levelsCompleted", current);
             Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene("LevelSelect");
         }

@@ -12,7 +12,7 @@ public class LevelSelect : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Button button = gameObject.GetComponent<Button>();
         int current = Int16.Parse(button.name.Split("Level")[1]);
-        int completed = PlayerPrefs.GetInt("levelsDone") + 1;
+        int completed = PlayerPrefs.GetInt("levelsCompleted") + 1;
         if (completed < current)
         {
             button.GetComponent<Image>().color = Color.gray;

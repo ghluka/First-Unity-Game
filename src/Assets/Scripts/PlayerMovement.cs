@@ -86,8 +86,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            velocity.x *= .9f;
-            velocity.z *= .9f;
+            velocity.x *= .99f;
+            velocity.z *= .99f;
         }
 
         if (velocity.x > -.1f && velocity.x < .1f)
