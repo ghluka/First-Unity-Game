@@ -84,10 +84,10 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity += move * speed * 5f * Time.deltaTime;
         }
-        else
+        else if (isGrounded)
         {
-            velocity.x *= .96f;
-            velocity.z *= .96f;
+            velocity.x *= .5f;
+            velocity.z *= .5f;
         }
 
         if (velocity.x > -.1f && velocity.x < .1f)
