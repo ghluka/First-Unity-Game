@@ -10,5 +10,8 @@ public class DoNotDestroy : MonoBehaviour
         if (musicObject.Length > 1)
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
+        
+        Application.targetFrameRate = 30;
+        QualitySettings.vSyncCount = 0;
     }
 }
