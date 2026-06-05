@@ -16,8 +16,8 @@ public class MouseMovement : MonoBehaviour
     {
         float mouseSensitivity = PlayerPrefs.GetFloat("mouseSensitivity", 0.5f);
 
-        float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity * 25f;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity * 25f;
+        float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity * 400f * Time.deltaTime;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity * 400f * Time.deltaTime;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -89.99f, 89.99f);
